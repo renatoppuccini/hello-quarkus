@@ -43,6 +43,7 @@ public class ReactiveGreetingResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
+        System.out.println("Could not get local address");
         InetAddress myAddress;
         try {
             myAddress = InetAddress.getLocalHost();
