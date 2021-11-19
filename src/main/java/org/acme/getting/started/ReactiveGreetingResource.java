@@ -22,6 +22,7 @@ public class ReactiveGreetingResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/greeting/{name}")
     public Uni<String> greeting(String name) {
+        System.out.println("Could not get local address11111");
         return service.greeting(name + ", sorry, but could not get the local address");
     }
 
