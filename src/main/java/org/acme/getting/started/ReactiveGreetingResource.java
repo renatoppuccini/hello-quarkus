@@ -1,5 +1,7 @@
 package org.acme.getting.started;
 
+import java.net.InetAddress;
+
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,7 +22,7 @@ public class ReactiveGreetingResource {
     @Produces(MediaType.TEXT_PLAIN)
     @Path("/greeting/{name}")
     public Uni<String> greeting(String name) {
-        return service.greeting(name);
+        return service.greeting(name + ", sorry, but could not get the local address");
     }
 
     @GET
@@ -41,6 +43,15 @@ public class ReactiveGreetingResource {
     @GET
     @Produces(MediaType.TEXT_PLAIN)
     public String hello() {
-        return "hello";
+        InetAddress myAddress;
+        try {
+            myAddress = InetAddress.getLocalHost();
+        } catch (Exception e) {
+            System.out.println("Could not get local address");
+        }
+        if (myAddress!=null)
+            return service.greeting(hello + " from " + myAddress.getHostName() + " - "+ myAddress.getHostAddress());
+        else
+        return service.greeting(hello + ", sorry, but could not get the local address");
     }
 }
