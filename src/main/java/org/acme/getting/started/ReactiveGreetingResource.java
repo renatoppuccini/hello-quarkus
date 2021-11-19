@@ -52,8 +52,8 @@ public class ReactiveGreetingResource {
             System.out.println("Could not get local address");
         }
         if (myAddress!=null)
-            return service.greeting(hello + " from " + myAddress.getHostName() + " - "+ myAddress.getHostAddress());
+            return hello + " from " + myAddress.getHostName() + " - "+ myAddress.getHostAddress();
         else
-        return service.greeting(hello + ", sorry, but could not get the local address");
+        return hello + ", sorry, but could not get the local address";
     }
 }
